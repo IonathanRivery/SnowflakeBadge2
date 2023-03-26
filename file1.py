@@ -1,3 +1,3 @@
-import stramlit
+import streamlit
 
-stremlit.title("Hello! Rivery")
+streamlit.title("Hello! Rivery")
