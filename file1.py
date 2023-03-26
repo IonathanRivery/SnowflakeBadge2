@@ -11,5 +11,13 @@ streamlit.header("This is a header sample 2")
 
 streamlit.header("My Fruit List")
 my_fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
+
+# setting an index by the column "Fruit" - indexes will be taken from this column instead of default number indexes
+my_fruit_list = my_fruit_list.set_index("Fruit")
+
+# Creating a selection for the user with streamlit.multiselect()
+streamlit.multiselect("Pick some fruits: ", list(my_fruit_list.index))
+
+# Present the table
 streamlit.dataframe(my_fruit_list)
 
