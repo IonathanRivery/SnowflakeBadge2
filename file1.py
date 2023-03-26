@@ -19,5 +19,6 @@ my_fruit_list_indexed = my_fruit_list.set_index("Fruit")
 streamlit.multiselect("Pick some fruits: ", list(my_fruit_list_indexed.index))
 
 # Present the table
-streamlit.dataframe(my_fruit_list_indexed)
+#streamlit.dataframe(my_fruit_list_indexed)
 
+pd.iloc(my_fruit_list_indexed)
