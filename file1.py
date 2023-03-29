@@ -37,3 +37,9 @@ def update_table():
         table_widget.dataframe(filtered_fruit_list)
     else:
         table_widget.dataframe(my_fruit_list)
+        
+        
+#lesson 9 - new section        
+import requests       
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+streamlit.text(fruityvice_response)
