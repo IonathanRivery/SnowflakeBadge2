@@ -46,10 +46,10 @@ streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all")
 streamlit.text(fruityvice_response)
 fruit_choice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(my_fruit_list.index))
-selected_fruit = streamlit.write('The user entered ', fruit_choice)
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + str(selected_fruit))
+selected_fruit = streamlit.text('The user entered: ').write(fruit_choice)
+fruityvice_response1 = requests.get("https://fruityvice.com/api/fruit/" + str(selected_fruit))
 # take the json version of the response and normalize it
-fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+fruityvice_normalized = pd.json_normalize(fruityvice_response1.json())
 # output it the screen as a table
 streamlit.dataframe (fruityvice_normalized)
 
