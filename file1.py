@@ -63,6 +63,25 @@ fruityvice_select_fruits = streamlit.multiselect("Pick fruits: ", list(fruit_nam
 
 # Check if any fruit is selected
 if fruityvice_select_fruits:
+    # Convert data to a DataFrame
+    df_fruityvice = pd.DataFrame(data)
+    # Filter the DataFrame based on the selected fruits
+    filtered_fruityvice_list = df_fruityvice[df_fruityvice['name'].isin(fruityvice_select_fruits)]
+    # Output the filtered DataFrame to the screen as a table
+    streamlit.dataframe(filtered_fruityvice_list)
+else:
+    # Output the entire data to the screen as a table
+    streamlit.dataframe(pd.DataFrame(data))
+    
+# Normalize the selected fruits and output as a table
+fruityvice_normalized = pd.json_normalize(data, 'fruit_details', ['name'])
+fruityvice_normalized = fruityvice_normalized[fruityvice_normalized['name'].isin(fruityvice_select_fruits)]
+streamlit.dataframe(fruityvice_normalized)
+
+
+'''
+# Check if any fruit is selected
+if fruityvice_select_fruits:
 # Get the selected fruit
     filtered_fruityvice_list = data.loc[fruit_names]
     streamlit.dataframe(filtered_fruityvice_list)
@@ -74,4 +93,5 @@ else:
     fruityvice_normalized = pd.json_normalize(fruityvice_select_fruits)
 # Output it to the screen as a table
     streamlit.dataframe(fruityvice_normalized)
+'''
 
