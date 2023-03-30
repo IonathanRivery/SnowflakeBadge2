@@ -63,40 +63,49 @@ fruityvice_list = pd.read_csv("https://fruityvice.com/api/fruit/all")
 fruit_choice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(fruityvice_list))
 
 
-if selected_fruityvice_list:
-    # Filter the dataframe based on the selected fruits
-    filtered_fruityvice_list = fruityvice_list.loc[selected_fruityvice_list]
-    # Present the filtered table
-    streamlit.dataframe(filtered_fruityvice_list)
-else:
-    # Present the entire table
-    streamlit.dataframe(fruityvice_list)
-
-
-def update_fruityvice_table():
-    fruit_choice = multiselect_widget.current_value
-    if fruit_choice:
-        filtered_fruityvice_list = fruityvice_list.loc[selected_fruityvice_list]
-        table_widget.dataframe(filtered_fruityvice_list)
-    else:
-        table_widget.dataframe(fruityvice_list)
-
-
-
 
 # Check if any fruit is selected
-#if fruit_choice:
-#    # Get the selected fruit
-#    selected_fruit = fruit_choice[0:10]
-#    streamlit.text('The user selected: ' + str(selected_fruit))
-#    # Send the API request for the selected fruit
-#    fruityvice_response1 = requests.get("https://fruityvice.com/api/fruit/" + str(selected_fruit))
-#    # Take the json version of the response and normalize it
-#    fruityvice_normalized = pd.json_normalize(fruityvice_response1.json())
-#    # Output it to the screen as a table
-#    streamlit.dataframe(fruityvice_normalized)
+if fruit_choice:
+# Get the selected fruit
+    selected_fruit = fruit_choice[0:10]
+    streamlit.text('The user selected: ' + str(selected_fruit))
+    # Send the API request for the selected fruit
+    fruityvice_response1 = requests.get("https://fruityvice.com/api/fruit/" + str(selected_fruit))
+    # Take the json version of the response and normalize it
+    fruityvice_normalized = pd.json_normalize(fruityvice_response1.json())
+    # Output it to the screen as a table
+    streamlit.dataframe(fruityvice_normalized)
+else:
+    streamlit.text('Please select at least one fruit')
+
+
+
+
+
+
+
+
+#if selected_fruityvice_list:
+#    # Filter the dataframe based on the selected fruits
+#    filtered_fruityvice_list = fruityvice_list.loc[selected_fruityvice_list]
+#    # Present the filtered table
+#    streamlit.dataframe(filtered_fruityvice_list)
 #else:
-#    streamlit.text('Please select at least one fruit')
+#    # Present the entire table
+#    streamlit.dataframe(fruityvice_list)
+
+
+#def update_fruityvice_table():
+#    fruit_choice = multiselect_widget.current_value
+#    if fruit_choice:
+#        filtered_fruityvice_list = fruityvice_list.loc[selected_fruityvice_list]
+#        table_widget.dataframe(filtered_fruityvice_list)
+#    else:
+#        table_widget.dataframe(fruityvice_list)
+
+
+
+
 
 
 
