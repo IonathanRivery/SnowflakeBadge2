@@ -1,4 +1,4 @@
-mport streamlit
+import streamlit
 import pandas as pd
 
 streamlit.title("Hello! Rivery")
