@@ -17,7 +17,7 @@ my_fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/da
 my_fruit_list = my_fruit_list.set_index("Fruit")
 
 # Creating a selection for the user with streamlit.multiselect()
-selected_fruits = streamlit.multiselect("Pick some fruits: ", list(my_fruit_list.index), default=list(my_fruit_list.index))
+selected_fruits = streamlit.multiselect("Pick some fruits: ", list(my_fruit_list.index))#, default=list(my_fruit_list.index))
 
 # Check if any fruit is selected
 if selected_fruits:
@@ -62,7 +62,7 @@ fruit_choice = streamlit.multiselect("Pick some fruits you would like to get som
 # Check if any fruit is selected
 if fruit_choice:
     # Get the selected fruit
-    selected_fruit = fruit_choice.loc[selected_fruits]
+    selected_fruit = fruit_choice[0]
     streamlit.text('The user selected: ' + selected_fruit)
     # Send the API request for the selected fruit
     fruityvice_response1 = requests.get("https://fruityvice.com/api/fruit/" + selected_fruit)
