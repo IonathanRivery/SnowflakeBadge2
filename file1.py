@@ -42,22 +42,22 @@ def update_table():
 #lesson 9 - new section        
 import requests    
 
+
 streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all")
 streamlit.text(fruityvice_response)
 fruityvice_list = pd.read_csv("https://fruityvice.com/api/fruit/all")
-fruityvice_index = fruityvice_list.set_index("name")
-fruit_choice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(fruityvice_index.index))
+
+fruit_choice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(my_fruit_list.index))
 # Check if any fruit is selected
 if fruit_choice:
 # Get the selected fruit
-    selected_fruityvice_fruit = fruit_choice
-    streamlit.text('The user selected: ' + str(selected_fruityvice_fruit))
+    selected_fruits_from_fruityvice = fruit_choice
+    streamlit.text('The user selected: ' + str(selected_fruits_from_fruityvice))
 # Send the API request for the selected fruit
-    fruityvice_fruit_select = requests.get("https://fruityvice.com/api/fruit/" + fruityvice_index.index)
+    fruityvice_fruit_select = requests.get("https://fruityvice.com/api/fruit/" + str(selected_fruits_from_fruityvice))
 # Take the json version of the response and normalize it
-    fruityvice_normalized = pd.json_normalize(selected_fruityvice_fruit.json())
-    streamlit.text('Please select at least one fruit')
+    fruityvice_normalized = pd.json_normalize(selected_fruits_from_fruityvice.json())
 # Output it to the screen as a table
     streamlit.dataframe(fruityvice_normalized)
 
