@@ -65,7 +65,7 @@ fruityvice_select_fruits = streamlit.multiselect("Pick fruits: ", list(fruit_nam
 if fruityvice_select_fruits:
 # Get the selected fruit
     #filtered_fruityvice_list = data.loc[fruityvice_select_fruits] 
-    filtered_fruityvice_list = data.loc[fruit_names]
+    filtered_fruityvice_list = data.iloc[fruit_names]
     streamlit.dataframe(filtered_fruityvice_list)
 else:
     streamlit.dataframe(data)
