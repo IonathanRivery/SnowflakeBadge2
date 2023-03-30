@@ -46,14 +46,27 @@ import requests
 streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all")
 streamlit.text(fruityvice_response)
+streamlit.text("Select Fruits from the following list to get more info on: ")
 if fruityvice_response.status_code == 200:
     data = fruityvice_response.json()
     # assuming the data is a list of dictionaries with a 'name' key
     fruit_names = [fruit['name'] for fruit in data]
     streamlit.text(fruit_names)
 else:
-    print('Failed to retrieve data')
+    streamlit.text('Failed to retrieve data')
 
+fruit_names = fruit_names.set_index(fruit['name'])    
+fruityvice_select_fruits = streamlit.multiselect("Pick fruits: ", fruit_names.index)    
+
+    
+
+    
+    
+    
+    
+    
+                         
+    
 
 
 
