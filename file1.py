@@ -50,10 +50,10 @@ fruit_choice = streamlit.multiselect("Pick some fruits you would like to get som
 # Check if any fruit is selected
 if fruit_choice:
 # Get the selected fruit
-    selected_fruityvice_fruit = str(fruit_choice)
+    selected_fruityvice_fruit = fruit_choice
     streamlit.text('The user selected: ' + str(fruit_choice))
 # Send the API request for the selected fruit
-    fruityvice_fruit_select = requests.get("https://fruityvice.com/api/fruit/" + selected_fruityvice_fruit)
+    fruityvice_fruit_select = requests.get("https://fruityvice.com/api/fruit/" + my_fruit_list.index)
 # Take the json version of the response and normalize it
     fruityvice_normalized = pd.json_normalize(selected_fruityvice_fruit.json())
     streamlit.text('Please select at least one fruit')
