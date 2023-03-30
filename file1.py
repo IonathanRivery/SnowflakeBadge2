@@ -58,14 +58,16 @@ import requests
 streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all")
 streamlit.text(fruityvice_response)
-fruit_choice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(my_fruit_list.index))
+fruityvice_to_csv = pd.read_csv("https://fruityvice.com/api/fruit/all")
+fruityvice_indexed_list = fruityvice_to_csv.set_index("Fruit")
+fruit_choice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(fruityvice_indexed_list.index))
 # Check if any fruit is selected
 if fruit_choice:
     # Get the selected fruit
     selected_fruit = fruit_choice[0:10]
     streamlit.text('The user selected: ' + str(selected_fruit))
     # Send the API request for the selected fruit
-    fruityvice_response1 = requests.get("https://fruityvice.com/api/fruit/" + selected_fruit)
+    fruityvice_response1 = requests.get("https://fruityvice.com/api/fruit/" + str(selected_fruit))
     # Take the json version of the response and normalize it
     fruityvice_normalized = pd.json_normalize(fruityvice_response1.json())
     # Output it to the screen as a table
