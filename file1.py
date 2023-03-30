@@ -1,4 +1,4 @@
-import streamlit
+mport streamlit
 import pandas as pd
 
 streamlit.title("Hello! Rivery")
@@ -17,7 +17,7 @@ my_fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/da
 my_fruit_list = my_fruit_list.set_index("Fruit")
 
 # Creating a selection for the user with streamlit.multiselect()
-selected_fruits = streamlit.multiselect("Pick some fruits: ", list(my_fruit_list.index))
+selected_fruits = streamlit.multiselect("Pick some fruits: ", list(my_fruit_list.index))#, default=list(my_fruit_list.index))
 
 # Check if any fruit is selected
 if selected_fruits:
@@ -46,17 +46,13 @@ import requests
 streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all")
 streamlit.text(fruityvice_response)
-#fruityvice_list = pd.read_csv("https://fruityvice.com/api/fruit/all")
-fruityvice_data = fruityvice_response.json()
-fruityvice_list = pd.json_normalize(fruityvice_data, ["genus", "name", "nutritions", ["carbohydrates", "protein", "fat", "calories", "sugar"]])
+fruityvice_list = pd.read_csv("https://fruityvice.com/api/fruit/all")
 
-
-
-selected_fruits_from_fruityvice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(fruityvice_list["name"]))
+fruit_choice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(my_fruit_list.index))
 # Check if any fruit is selected
-if selected_fruits_from_fruityvice:
+if fruit_choice:
 # Get the selected fruit
-     
+    selected_fruits_from_fruityvice = fruit_choice
     streamlit.text('The user selected: ' + str(selected_fruits_from_fruityvice))
 # Send the API request for the selected fruit
     fruityvice_fruit_select = requests.get("https://fruityvice.com/api/fruit/" + str(selected_fruits_from_fruityvice))
