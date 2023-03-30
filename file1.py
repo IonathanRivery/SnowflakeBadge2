@@ -48,7 +48,8 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all")
 streamlit.text(fruityvice_response)
 #fruityvice_list = pd.read_csv("https://fruityvice.com/api/fruit/all")
 fruityvice_data = fruityvice_response.json()
-fruityvice_list = pd.json_normalize(fruityvice_data, "name")
+fruityvice_list = pd.json_normalize(fruityvice_data, ["genus", "name", "nutritions", ["carbohydrates", "protein", "fat", "calories", "sugar"]])
+
 
 
 selected_fruits_from_fruityvice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(fruityvice_list["name"]))
