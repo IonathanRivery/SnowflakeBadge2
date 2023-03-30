@@ -59,8 +59,8 @@ streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all")
 streamlit.text(fruityvice_response)
 fruityvice_list = pd.read_csv("https://fruityvice.com/api/fruit/all")
-fruityvice_list = fruityvice_list.set_index("name")
-fruit_choice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(fruityvice_list.index))
+#fruityvice_list = fruityvice_list.set_index("name")
+fruit_choice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(fruityvice_list))
 
 
 if selected_fruityvice_list:
