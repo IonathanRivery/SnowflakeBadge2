@@ -47,8 +47,19 @@ streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all")
 streamlit.text(fruityvice_response)
 fruityvice_list = pd.read_csv("https://fruityvice.com/api/fruit/all")
+streamlit.dataframe(fruityvice_list)
 
-fruit_choice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(my_fruit_list.index))
+
+
+
+
+
+
+
+
+
+'''
+fruit_choice = streamlit.multiselect("Pick fruits from the list above you would like to get some more info on: ", list(my_fruit_list.index))
 # Check if any fruit is selected
 if fruit_choice:
 # Get the selected fruit
