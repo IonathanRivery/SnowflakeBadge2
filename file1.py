@@ -17,7 +17,7 @@ my_fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/da
 my_fruit_list = my_fruit_list.set_index("Fruit")
 
 # Creating a selection for the user with streamlit.multiselect()
-selected_fruits = streamlit.multiselect("Pick some fruits: ", list(my_fruit_list.index))#, default=list(my_fruit_list.index))
+selected_fruits = streamlit.multiselect("Pick some fruits: ", list(my_fruit_list.index))
 
 # Check if any fruit is selected
 if selected_fruits:
@@ -47,6 +47,9 @@ streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all")
 streamlit.text(fruityvice_response)
 streamlit.text("Select Fruits from the following list to get more info on: ")
+
+
+#list of fruits from fruityvice for selection
 if fruityvice_response.status_code == 200:
     data = fruityvice_response.json()
     # assuming the data is a list of dictionaries with a 'name' key
@@ -55,8 +58,22 @@ if fruityvice_response.status_code == 200:
 else:
     streamlit.text('Failed to retrieve data')
 
-#fruit_names = fruit_names.set_index()    
-fruityvice_select_fruits = streamlit.multiselect("Pick fruits: ", list(fruit_names))    
+# Creating a selection for the user 
+fruityvice_select_fruits = streamlit.multiselect("Pick fruits: ", list(fruit_names))
+
+# Check if any fruit is selected
+if fruityvice_select_fruits:
+# Get the selected fruit
+    filtered_fruityvice_list = data.loc[fruit_names]
+    streamlit.dataframe(filtered_fruityvice_list)
+else:
+    streamlit.dataframe(data)
+    
+    
+# Take the json version of the response and normalize it
+    fruityvice_normalized = pd.json_normalize(fruityvice_select_fruits)
+# Output it to the screen as a table
+    streamlit.dataframe(fruityvice_normalized)
 
     
 
