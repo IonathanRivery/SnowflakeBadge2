@@ -47,7 +47,7 @@ streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all")
 streamlit.text(fruityvice_response)
 if fruityvice_response.status_code == 200:
-    data = response.json()
+    data = fruityvice_response.json()
     # assuming the data is a list of dictionaries with a 'name' key
     fruit_names = [fruit['name'] for fruit in data]
     streamlit.text(fruit_names)
