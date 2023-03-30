@@ -64,7 +64,6 @@ fruityvice_select_fruits = streamlit.multiselect("Pick fruits: ", list(fruit_nam
 # Check if any fruit is selected
 if fruityvice_select_fruits:
 # Get the selected fruit
-    #filtered_fruityvice_list = data.loc[fruityvice_select_fruits] 
     filtered_fruityvice_list = data.loc[fruit_names]
     streamlit.dataframe(filtered_fruityvice_list)
 else:
