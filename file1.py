@@ -62,7 +62,7 @@ fruit_choice = streamlit.multiselect("Pick some fruits you would like to get som
 # Check if any fruit is selected
 if fruit_choice:
     # Get the selected fruit
-    for i in fruit_chicue:
+    for i in range(fruit_chicue):
     selected_fruit = fruit_choice[i]
     streamlit.text('The user selected: ' + selected_fruit)
     # Send the API request for the selected fruit
