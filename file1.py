@@ -1,4 +1,4 @@
-import streamlit
+mport streamlit
 import pandas as pd
 
 streamlit.title("Hello! Rivery")
@@ -17,7 +17,7 @@ my_fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/da
 my_fruit_list = my_fruit_list.set_index("Fruit")
 
 # Creating a selection for the user with streamlit.multiselect()
-selected_fruits = streamlit.multiselect("Pick some fruits: ", list(my_fruit_list.index))#, default=list(my_fruit_list.index))
+selected_fruits = streamlit.multiselect("Pick some fruits: ", list(my_fruit_list.index))
 
 # Check if any fruit is selected
 if selected_fruits:
@@ -42,31 +42,21 @@ def update_table():
 #lesson 9 - new section        
 import requests    
 
+
 streamlit.header("Fruityvice Fruit Advice!")
-
-# Send the API request for all fruits and normalize the json response
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all")
-fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+streamlit.text(fruityvice_response)
+fruityvice_list = pd.read_csv("https://fruityvice.com/api/fruit/all")
 
+selected_fruits_from_fruityvice = streamlit.multiselect("Pick some fruits you would like to get some more info on: ", list(fruityvice_list["name"]))
 # Check if any fruit is selected
-if selected_fruits:
-    # Filter the dataframe based on the selected fruits
-    filtered_fruityvice = fruityvice_normalized[fruityvice_normalized["name"].isin(selected_fruits)]
-    # Present the filtered table
-    streamlit.dataframe(filtered_fruityvice)
-else:
-    # Present the entire table
+if selected_fruits_from_fruityvice:
+# Get the selected fruit
+     
+    streamlit.text('The user selected: ' + str(selected_fruits_from_fruityvice))
+# Send the API request for the selected fruit
+    fruityvice_fruit_select = requests.get("https://fruityvice.com/api/fruit/" + str(selected_fruits_from_fruityvice))
+# Take the json version of the response and normalize it
+    fruityvice_normalized = pd.json_normalize(selected_fruits_from_fruityvice.json())
+# Output it to the screen as a table
     streamlit.dataframe(fruityvice_normalized)
-
-
-
-
-
-
-
-
-
-
-
-
-
