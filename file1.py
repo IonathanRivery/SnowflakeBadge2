@@ -74,8 +74,8 @@ else:
 
 
 def update_fruityvice_table():
-    selected_fruityvice_list = multiselect_widget.current_value
-    if selected_fruityvice_list:
+    fruit_choice = multiselect_widget.current_value
+    if fruit_choice:
         filtered_fruityvice_list = fruityvice_list.loc[selected_fruityvice_list]
         table_widget.dataframe(filtered_fruityvice_list)
     else:
