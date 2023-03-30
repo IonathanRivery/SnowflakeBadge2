@@ -56,7 +56,8 @@ if fruit_choice:
     fruityvice_fruit_select = requests.get("https://fruityvice.com/api/fruit/" + str(fruit_choice))
 # Take the json version of the response and normalize it
     fruityvice_normalized = pd.json_normalize(selected_fruityvice_fruit.json())
+    streamlit.text('Please select at least one fruit')
 # Output it to the screen as a table
     streamlit.dataframe(fruityvice_normalized)
-else:
-    streamlit.text('Please select at least one fruit')
+
+    
