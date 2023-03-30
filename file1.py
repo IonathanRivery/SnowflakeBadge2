@@ -55,8 +55,8 @@ if fruityvice_response.status_code == 200:
 else:
     streamlit.text('Failed to retrieve data')
 
-fruit_names = fruit_names.set_index()    
-fruityvice_select_fruits = streamlit.multiselect("Pick fruits: ", list(fruit_names.index))    
+#fruit_names = fruit_names.set_index()    
+fruityvice_select_fruits = streamlit.multiselect("Pick fruits: ", list(fruit_names))    
 
     
 
