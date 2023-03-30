@@ -57,7 +57,7 @@ if fruit_choice:
 # Send the API request for the selected fruit
     fruityvice_fruit_select = requests.get("https://fruityvice.com/api/fruit/" + str(selected_fruits_from_fruityvice))
 # Take the json version of the response and normalize it
-    fruityvice_normalized = pd.json_normalize(selected_fruits_from_fruityvice.json())
+    fruityvice_normalized = pd.json_normalize(fruityvice_fruit_select.json())
 # Output it to the screen as a table
     streamlit.dataframe(fruityvice_normalized)
 
