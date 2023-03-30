@@ -56,7 +56,7 @@ else:
     streamlit.text('Failed to retrieve data')
 
 fruit_names = fruit_names.set_index(fruit['name'])    
-fruityvice_select_fruits = streamlit.multiselect("Pick fruits: ", fruit_names.index)    
+fruityvice_select_fruits = streamlit.multiselect("Pick fruits: ", list(fruit_names.index))    
 
     
 
