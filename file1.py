@@ -46,8 +46,8 @@ import requests
 streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all")
 streamlit.text(fruityvice_response)
-fruityvice_list = pd.read_csv("https://fruityvice.com/api/fruit/all")
-streamlit.dataframe(fruityvice_list)
+#fruityvice_list = pd.read_csv("https://fruityvice.com/api/fruit/all")
+streamlit.dataframe(fruityvice_response)
 
 
 
