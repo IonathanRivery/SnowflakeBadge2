@@ -65,7 +65,7 @@ if fruit_choice:
     selected_fruit = fruit_choice[0:10]
     streamlit.text('The user selected: ' + str(selected_fruit))
     # Send the API request for the selected fruit
-    fruityvice_response1 = requests.get("https://fruityvice.com/api/fruit/" + selected_fruit)
+    fruityvice_response1 = requests.get("https://fruityvice.com/api/fruit/" + str(selected_fruit))
     # Take the json version of the response and normalize it
     fruityvice_normalized = pd.json_normalize(fruityvice_response1.json())
     # Output it to the screen as a table
