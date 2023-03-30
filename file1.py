@@ -79,19 +79,19 @@ fruityvice_normalized = fruityvice_normalized[fruityvice_normalized['name'].isin
 streamlit.dataframe(fruityvice_normalized)
 
 
-'''
-# Check if any fruit is selected
-if fruityvice_select_fruits:
-# Get the selected fruit
-    filtered_fruityvice_list = data.loc[fruit_names]
-    streamlit.dataframe(filtered_fruityvice_list)
-else:
-    streamlit.dataframe(data)
-        
-    
-# Take the json version of the response and normalize it
-    fruityvice_normalized = pd.json_normalize(fruityvice_select_fruits)
-# Output it to the screen as a table
-    streamlit.dataframe(fruityvice_normalized)
-'''
+#'''
+## Check if any fruit is selected
+#if fruityvice_select_fruits:
+## Get the selected fruit
+#    filtered_fruityvice_list = data.loc[fruit_names]
+#    streamlit.dataframe(filtered_fruityvice_list)
+#else:
+#    streamlit.dataframe(data)
+#        
+#    
+## Take the json version of the response and normalize it
+#    fruityvice_normalized = pd.json_normalize(fruityvice_select_fruits)
+## Output it to the screen as a table
+#    streamlit.dataframe(fruityvice_normalized)
+#'''
 
