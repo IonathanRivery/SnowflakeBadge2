@@ -30,13 +30,13 @@ else:
     streamlit.dataframe(my_fruit_list)
 
 # Add a callback to update the table when the user changes the selected fruits
-def update_table():
-    selected_fruits = multiselect_widget.current_value
-    if selected_fruits:
-        filtered_fruit_list = my_fruit_list.loc[selected_fruits]
-        table_widget.dataframe(filtered_fruit_list)
-    else:
-        table_widget.dataframe(my_fruit_list)
+# def update_table():
+#    selected_fruits = multiselect_widget.current_value
+#    if selected_fruits:
+#        filtered_fruit_list = my_fruit_list.loc[selected_fruits]
+#        table_widget.dataframe(filtered_fruit_list)
+#    else:
+#        table_widget.dataframe(my_fruit_list)
         
         
 #lesson 9 - new section        
